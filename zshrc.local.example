@@ -1,0 +1,15 @@
+# Local machine-specific configuration
+# Copy this file to ~/.zshrc.local and customize as needed
+# This file is not tracked in git and is for personal/private settings
+
+# Example: Add machine-specific PATH entries
+# export PATH="/custom/path:$PATH"
+
+# Example: Add private aliases
+# alias work="cd ~/work/project"
+
+# Example: Add API keys or tokens (DO NOT commit these)
+# export OPENAI_API_KEY="your-key-here"
+
+# Example: Override default settings
+# HISTSIZE=10000

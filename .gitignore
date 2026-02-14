@@ -1,0 +1,16 @@
+# Local configuration (contains machine-specific or private settings)
+*.local
+
+# macOS
+.DS_Store
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Backup files
+*.backup
+*.bak
