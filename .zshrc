@@ -11,6 +11,7 @@ fi
 # Set configuration directory
 ZSH_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 
+
 # Source configuration modules
 source "$ZSH_CONFIG_DIR/environment.zsh"
 source "$ZSH_CONFIG_DIR/history.zsh"
@@ -21,6 +22,7 @@ source "$ZSH_CONFIG_DIR/functions.zsh"
 source "$ZSH_CONFIG_DIR/aliases.zsh"
 source "$ZSH_CONFIG_DIR/theme.zsh"
 source "$ZSH_CONFIG_DIR/tools.zsh"
+
 
 # Enable aliases
 setopt aliases

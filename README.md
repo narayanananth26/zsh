@@ -45,16 +45,14 @@ git clone https://github.com/narayanananth26/zsh.git ~/.config/zsh
 ### 2. Backup your existing config
 
 ```bash
-mv ~/.zshrc ~/.zshrc.backup
+# Backup if .zshrc exists (might show "No such file" - that's fine!)
+mv ~/.zshrc ~/.zshrc.backup 2>/dev/null || true
 ```
 
-This might throw an error: No such file or directory (that's ok)
-
-### 3. Create symlinks
+### 3. Copy the main config file
 
 ```bash
-ln -s ~/.config/zsh/.zshrc ~/.zshrc
-ln -s ~/.config/zsh/zsh ~/.config/zsh
+cp ~/.config/zsh/.zshrc ~/.zshrc
 ```
 
 ### 4. Install Powerlevel10k
@@ -83,7 +81,14 @@ brew install fzf zoxide neovim
 sudo apt install fzf zoxide neovim
 ```
 
-### 6. Restart your shell
+### 6. Configure for login shells (macOS/most terminals)
+
+```bash
+# Add this to ~/.zprofile to load .zshrc on startup
+echo '[[ -f ~/.zshrc ]] && source ~/.zshrc' >> ~/.zprofile
+```
+
+### 7. Restart your shell
 
 ```bash
 exec zsh
@@ -200,6 +205,20 @@ rm -rf ~/powerlevel10k
 ```
 
 ## Troubleshooting
+
+### Aliases not working (ta, xx, vi, etc.)
+
+If your aliases don't work after installation:
+
+```bash
+# Check if .zprofile loads .zshrc
+cat ~/.zprofile | grep zshrc
+
+# If nothing shows, add this line:
+echo '[[ -f ~/.zshrc ]] && source ~/.zshrc' >> ~/.zprofile
+
+# Then restart your terminal
+```
 
 ### Plugins not loading
 
