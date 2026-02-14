@@ -39,7 +39,7 @@ A modular, well-organized zsh configuration that's easy to customize and share.
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/zsh-config.git ~/.config/zsh-public
+git clone https://github.com/narayanananth26/zsh.git ~/.config/zsh
 ```
 
 ### 2. Backup your existing config
@@ -48,11 +48,13 @@ git clone https://github.com/YOUR_USERNAME/zsh-config.git ~/.config/zsh-public
 mv ~/.zshrc ~/.zshrc.backup
 ```
 
+This might throw an error: No such file or directory (that's ok)
+
 ### 3. Create symlinks
 
 ```bash
-ln -s ~/.config/zsh-public/.zshrc ~/.zshrc
-ln -s ~/.config/zsh-public/zsh ~/.config/zsh
+ln -s ~/.config/zsh/.zshrc ~/.zshrc
+ln -s ~/.config/zsh/zsh ~/.config/zsh
 ```
 
 ### 4. Install Powerlevel10k
@@ -172,7 +174,7 @@ so "how to use zsh"
 ## Updating
 
 ```bash
-cd ~/.config/zsh-public
+cd ~/.config/zsh
 git pull
 ```
 
