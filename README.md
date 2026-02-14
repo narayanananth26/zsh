@@ -4,29 +4,32 @@ A modular, well-organized zsh configuration that's easy to customize and share.
 
 ## Features
 
-- 🚀 **Vi mode** with enhanced keybindings
-- 📝 **Smart history** with search and deduplication
-- 🎨 **Powerlevel10k** theme
-- 🔌 **Plugin management** with Zinit
-- ✨ **Syntax highlighting** and autosuggestions
-- 🔍 **FZF integration** for fuzzy finding
-- 📁 **Zoxide** for smart directory jumping
-- 🛠️ **Custom functions** for C/C++ compilation and web searches
-- 🌐 **Git integration** with Oh My Zsh plugins
+- **Vi mode** with enhanced keybindings
+- **Smart history** with search and deduplication
+- **Powerlevel10k** theme
+- **Plugin management** with Zinit
+- **Syntax highlighting** and autosuggestions
+- **FZF integration** for fuzzy finding
+- **Zoxide** for smart directory jumping
+- **Custom functions** for C/C++ compilation and web searches
+- **Git integration** with Oh My Zsh plugins
 
 ## Prerequisites
 
 ### Required
+
 - [Zsh](https://www.zsh.org/) (shell)
 - [Git](https://git-scm.com/) (for plugin installation)
 
 ### Recommended
+
 - [Powerlevel10k](https://github.com/romkatv/powerlevel10k) (theme)
 - [FZF](https://github.com/junegunn/fzf) (fuzzy finder)
 - [Zoxide](https://github.com/ajeetdsouza/zoxide) (smart cd)
 - [Neovim](https://neovim.io/) (for vim/vi aliases)
 
 ### Optional
+
 - [NVM](https://github.com/nvm-sh/nvm) (Node version manager)
 - [Conda](https://docs.conda.io/) (Python environment manager)
 - [Go](https://golang.org/) (Go programming language)
@@ -67,11 +70,13 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.local/share/
 ### 5. Install recommended tools
 
 #### macOS (Homebrew)
+
 ```bash
 brew install fzf zoxide neovim
 ```
 
 #### Linux (Ubuntu/Debian)
+
 ```bash
 sudo apt install fzf zoxide neovim
 ```
@@ -111,6 +116,7 @@ cp ~/.config/zsh/zshrc.local.example ~/.zshrc.local
 ```
 
 This file is not tracked in git and is perfect for:
+
 - Private API keys
 - Machine-specific paths
 - Work-related configurations
@@ -194,6 +200,7 @@ rm -rf ~/powerlevel10k
 ## Troubleshooting
 
 ### Plugins not loading
+
 ```bash
 # Reinstall zinit
 rm -rf ~/.local/share/zinit
@@ -201,13 +208,16 @@ exec zsh
 ```
 
 ### Theme not showing
+
 ```bash
 # Reconfigure Powerlevel10k
 p10k configure
 ```
 
 ### Command not found
+
 Check if the tool is installed:
+
 ```bash
 which zoxide fzf nvim
 ```
