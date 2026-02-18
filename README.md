@@ -1,18 +1,55 @@
 # Zsh Configuration
 
-A modular, well-organized zsh configuration that's easy to customize and share.
+Super based shell config
 
 ## Features
 
+- **Blazingly Fast Startup** - Optimized to ~150-200ms with lazy loading
 - **Vi mode** with enhanced keybindings
 - **Smart history** with search and deduplication
-- **Powerlevel10k** theme
-- **Plugin management** with Zinit
-- **Syntax highlighting** and autosuggestions
+- **Powerlevel10k** theme with instant prompt
+- **Plugin management** with Zinit (turbo mode enabled)
+- **Syntax highlighting** and autosuggestions (lazy loaded)
 - **FZF integration** for fuzzy finding
+- `Ctrl+A` - Interactive alias search
 - **Zoxide** for smart directory jumping
+- **60+ Git aliases** - Custom, fast git shortcuts
+- **Alias discovery tools** - Find and learn your aliases
+- **Smart caching** - Completions, tools, and initializations
+- **Lazy loading** - NVM, Conda, and other slow tools
 - **Custom functions** for C/C++ compilation and web searches
-- **Git integration** with Oh My Zsh plugins
+
+## Performance Optimizations
+
+This configuration is highly optimized for fast shell startup:
+
+### Lazy Loading
+
+- **NVM** - Only loaded when you first use `nvm` command
+- **Conda** - Only loaded when you first use `conda` command
+- **Zoxide** - Initialization cached to `~/.cache/zoxide-init.zsh`
+
+### Completion Caching
+
+- Completions are cached for 24 hours
+- Regenerates only when cache expires
+- Saves ~300-500ms on every shell startup
+
+### Plugin Turbo Mode
+
+All non-essential plugins load asynchronously after prompt appears:
+
+- zsh-syntax-highlighting
+- zsh-autosuggestions
+- fzf-tab
+
+### Startup Time
+
+Test your startup time:
+
+```bash
+time zsh -i -c exit
+```
 
 ## Prerequisites
 
@@ -138,6 +175,74 @@ Each module can be edited independently:
 - **Change keybindings**: Edit `~/.config/zsh/keybindings.zsh`
 - **Add plugins**: Edit `~/.config/zsh/plugins.zsh`
 
+## Git Aliases
+
+60+ custom git aliases for faster workflow (no Oh-My-Zsh dependency):
+
+### Most Used
+
+```bash
+g      # git
+gst/gs # git status
+ga     # git add
+gaa    # git add --all
+gc     # git commit -v
+gcm    # git commit -m
+gcam   # git commit -a -m
+gp     # git push
+gl     # git pull
+gd     # git diff
+gco    # git checkout
+gcb    # git checkout -b
+gb     # git branch
+```
+
+### Advanced
+
+```bash
+gpsup  # git push and set upstream
+gpf    # git push --force-with-lease
+grbi   # git rebase -i
+glola  # beautiful git log graph
+gsta   # git stash
+grh    # git reset
+grhh   # git reset --hard
+groh   # git reset origin/<current-branch> --hard
+```
+
+See all aliases: `galias` or search: `falias <keyword>`
+
+## Alias Discovery & Search
+
+### Interactive FZF Alias Finder
+
+Press `Ctrl+A` anywhere to search through all your aliases with fuzzy finding.
+
+### Smart Alias Reminder
+
+Automatically shows you available aliases when you type full commands:
+
+```bash
+$ git status
+💡 Alias available:
+   gs='git status'
+   gst='git status'
+```
+
+### Search Functions
+
+```bash
+# Search for aliases by keyword
+falias push
+# Shows: gp, gpf, gpsup, etc.
+
+# List all git aliases
+galias
+
+# Browse all aliases with pagination
+aliases
+```
+
 ## Custom Functions
 
 ### Compilation helpers
@@ -243,17 +348,40 @@ Check if the tool is installed:
 which zoxide fzf nvim
 ```
 
-## Contributing
+### "defining function based on alias" error in tmux
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+This happens when old aliases conflict with new functions. Solutions:
 
-## License
+```bash
+# Option 1: Kill tmux server and restart fresh
+tmux kill-server
+tmux
 
-MIT License - feel free to use and modify as needed.
+# Option 2: In the affected tmux pane
+unalias gpsup 2>/dev/null
+source ~/.zshrc
+```
+
+This occurs because tmux-resurrect restores old shell environments.
+
+### Slow startup time
+
+Check your startup time:
+
+```bash
+time zsh -i -c exit
+```
+
+Should be under 200ms. If slower:
+
+1. Make sure lazy loading is working (check environment.zsh)
+2. Clear completion cache: `rm ~/.zcompdump*`
+3. Profile with `zprof`: Add `zmodload zsh/zprof` to top of .zshrc and `zprof` at bottom
 
 ## Credits
 
 - [Zinit](https://github.com/zdharma-continuum/zinit) - Plugin manager
 - [Powerlevel10k](https://github.com/romkatv/powerlevel10k) - Theme
-- [Oh My Zsh](https://ohmyz.sh/) - Git plugins and libraries
 - [zsh-users](https://github.com/zsh-users) - Completions, syntax highlighting, autosuggestions
+- [FZF](https://github.com/junegunn/fzf) - Fuzzy finder
+- [Zoxide](https://github.com/ajeetdsouza/zoxide) - Smart directory navigation
