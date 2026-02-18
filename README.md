@@ -82,7 +82,7 @@ git clone https://github.com/narayanananth26/zsh.git ~/.config/zsh
 ### 2. Backup your existing config
 
 ```bash
-# Backup if .zshrc exists (might show "No such file" - that's fine!)
+# Backup if .zshrc exists (might show "No such file" - that's fine, DO NOT PANIC!)
 mv ~/.zshrc ~/.zshrc.backup 2>/dev/null || true
 ```
 
@@ -103,6 +103,8 @@ Or install to `~/.local/share/powerlevel10k/`:
 ```bash
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.local/share/powerlevel10k
 ```
+
+**Note:** The included `p10k.zsh` configuration will give you the exact prompt style used in this setup. You can customize it later by running `p10k configure`.
 
 ### 5. Install recommended tools
 
@@ -146,6 +148,7 @@ On first launch, Zinit will automatically install all plugins.
 ├── aliases.zsh        # Command aliases
 ├── theme.zsh          # Powerlevel10k theme
 ├── tools.zsh          # External tools (fzf, zoxide)
+├── p10k.zsh           # Powerlevel10k configuration (prompt style)
 └── zshrc.local.example # Example local config
 ```
 
@@ -174,6 +177,7 @@ Each module can be edited independently:
 - **Add functions**: Edit `~/.config/zsh/functions.zsh`
 - **Change keybindings**: Edit `~/.config/zsh/keybindings.zsh`
 - **Add plugins**: Edit `~/.config/zsh/plugins.zsh`
+- **Customize prompt**: Run `p10k configure` or edit `~/.config/zsh/p10k.zsh`
 
 ## Git Aliases
 
@@ -338,6 +342,10 @@ exec zsh
 ```bash
 # Reconfigure Powerlevel10k
 p10k configure
+
+# Or to use the included configuration:
+cp ~/.config/zsh/p10k.zsh ~/.p10k.zsh
+exec zsh
 ```
 
 ### Command not found

@@ -9,5 +9,12 @@ elif [[ -f /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme ]]; then
     source /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme
 fi
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# Load p10k configuration
+# Try config directory first, fall back to home directory
+if [[ -f ~/.config/zsh/p10k.zsh ]]; then
+    source ~/.config/zsh/p10k.zsh
+elif [[ -f ~/.p10k.zsh ]]; then
+    source ~/.p10k.zsh
+fi
+
+# To customize prompt, run `p10k configure` or edit ~/.config/zsh/p10k.zsh
