@@ -12,13 +12,5 @@ fi
 
 # FZF - fuzzy finder - lazy load keybindings
 if [ -f ~/.fzf.zsh ]; then
-    # Only source completions immediately, defer keybindings
-    source <(grep -v 'bindkey' ~/.fzf.zsh)
-    
-    # Load keybindings on first use
-    _fzf_lazy_load() {
-        unfunction _fzf_lazy_load
-        source <(grep 'bindkey' ~/.fzf.zsh)
-    }
-    zle -N zle-line-init _fzf_lazy_load
+    source ~/.fzf.zsh
 fi
