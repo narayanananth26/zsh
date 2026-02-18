@@ -32,8 +32,10 @@ alias_reminder() {
     # Skip if empty or starts with alias itself
     [[ -z "$cmd" || "$cmd" == alias* ]] && return
     
-    # Check if an alias exists for this command
-    local alias_matches=$(alias | grep -E "='.*${cmd}.*'" | head -5)
+    # Only grep if cmd doesn't contain problematic characters
+    if [[ "$cmd" =~ ^[a-zA-Z0-9_-]+$ ]]; then
+        local alias_matches=$(alias | grep -E "='.*${cmd}.*'" 2>/dev/null | head -5)
+    fi
     
     if [[ -n "$alias_matches" ]]; then
         echo -e "\033[33m💡 Alias available:\033[0m"
