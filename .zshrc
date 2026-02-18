@@ -26,6 +26,4 @@ source "$ZSH_CONFIG_DIR/tools.zsh"
 
 # Enable aliases
 setopt aliases
-
-# Load local machine-specific configuration (optional, not tracked in git)
-[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+export PATH="$HOME/.cargo/bin:$PATH"

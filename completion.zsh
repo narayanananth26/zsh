@@ -1,8 +1,17 @@
 # Completion configuration
 
-# Initialize completions
+# Completion configuration with aggressive caching
 autoload -Uz compinit
-compinit -u
+
+# Only regenerate compdump once per day
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+if [[ ! -e ~/.zcompdump ]]; then
+  compinit
+else
+  compinit -C
+fi
 
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'

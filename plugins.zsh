@@ -13,25 +13,22 @@ source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-# Load a few important annexes, without Turbo
+# Load annexes without turbo (needed immediately)
 zinit light-mode for \
     zdharma-continuum/zinit-annex-as-monitor \
     zdharma-continuum/zinit-annex-bin-gem-node \
     zdharma-continuum/zinit-annex-patch-dl \
     zdharma-continuum/zinit-annex-rust
 
-# Load completions plugin first
+# Load completions first
 zinit light zsh-users/zsh-completions
 
-# Load syntax highlighting and autosuggestions
+# Load these AFTER prompt appears (turbo mode)
+zinit ice wait"0a" lucid
 zinit light zsh-users/zsh-syntax-highlighting
+
+zinit ice wait"0b" lucid
 zinit light zsh-users/zsh-autosuggestions
 
-# Load fzf tab
+zinit ice wait"0c" lucid
 zinit light Aloxaf/fzf-tab
-
-# Load Oh My Zsh git library (defines git_current_branch, etc.)
-zinit snippet https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/lib/git.zsh
-
-# Load the git plugin (adds aliases, uses those functions)
-zinit snippet https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/git/git.plugin.zsh
