@@ -10,7 +10,9 @@ if command -v zoxide &> /dev/null; then
     source ~/.cache/zoxide-init.zsh
 fi
 
-# FZF - fuzzy finder - lazy load keybindings
-if [ -f ~/.fzf.zsh ]; then
+# FZF - fuzzy finder
+if command -v fzf &>/dev/null; then
+    eval "$(fzf --zsh)"
+elif [ -f ~/.fzf.zsh ]; then
     source ~/.fzf.zsh
 fi
