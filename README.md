@@ -1,6 +1,4 @@
-# Zsh Configuration
-
-Super based shell config
+# Super based Zsh config
 
 ## Features
 
