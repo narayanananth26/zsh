@@ -51,6 +51,9 @@ alias gcb="git checkout -b"
 alias gcom="git checkout main || git checkout master"  # Changed from gcm to avoid conflict
 alias gcd="git checkout develop"
 
+# Cherry pick
+alias gcp="git cherry-pick" 
+
 # Switch
 alias gsw="git switch"
 alias gswc="git switch -c"
@@ -122,6 +125,8 @@ alias glola="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgr
 # Merge
 alias gm="git merge"
 alias gma="git merge --abort"
+alias gmff="git merge --ff-only"
+
 
 # Show
 alias gsh="git show"
