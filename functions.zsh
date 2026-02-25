@@ -138,6 +138,107 @@ gcc() {
     fi
 }
 
+# Check which dev tools are installed — run this before editing ~/.zshrc.local
+check-tools() {
+    local green="\033[32m" yellow="\033[33m" bold="\033[1m" reset="\033[0m"
+
+    local search_dirs=(
+        ~/.local/bin ~/.local/share/pdm/bin
+        /opt/homebrew/bin /opt/homebrew/sbin
+        /usr/local/bin /usr/bin /bin
+        ~/anaconda3/bin ~/miniconda3/bin /opt/anaconda3/bin
+        ~/.pyenv/bin ~/.pyenv/shims
+        ~/.cargo/bin ~/.bun/bin
+        ~/go/bin ~/Library/pnpm ~/.pnpm/bin
+        ~/.nvm/versions/node/*/bin(N)
+    )
+
+    _ct_check() {
+        local cmd="$1"
+        local found_path=""
+        local in_path=false
+        local lazy=false
+
+        # 1. Real binary in current PATH
+        found_path=$(whence -p "$cmd" 2>/dev/null)
+        if [[ -n "$found_path" ]]; then
+            in_path=true
+        fi
+
+        # 2. Lazy-loaded shell function (nvm, conda, etc.)
+        if [[ -z "$found_path" ]] && command -v "$cmd" &>/dev/null; then
+            lazy=true
+        fi
+
+        # 3. Search known install dirs when not in PATH
+        if [[ -z "$found_path" ]]; then
+            for dir in $search_dirs; do
+                if [[ -x "$dir/$cmd" ]]; then
+                    found_path="$dir/$cmd"
+                    break
+                fi
+            done
+        fi
+
+        if $in_path; then
+            printf "  ${green}✓${reset} %-12s %s\n" "$cmd" "$found_path"
+        elif [[ -n "$found_path" ]] && $lazy; then
+            printf "  ${green}✓${reset} %-12s %s ${yellow}(lazy-loaded)${reset}\n" "$cmd" "$found_path"
+        elif [[ -n "$found_path" ]]; then
+            printf "  ${yellow}!${reset} %-12s %s ${yellow}(not in PATH — add to ~/.zshrc.local)${reset}\n" "$cmd" "$found_path"
+        elif $lazy; then
+            printf "  ${green}✓${reset} %-12s %s\n" "$cmd" "(lazy-loaded shell function)"
+        fi
+    }
+
+    echo -e "\n${bold}Installed dev tools:${reset}"
+
+    echo -e "\n${yellow}Python${reset}"
+    _ct_check "python"  python3
+    _ct_check "pip"     pip3
+    _ct_check "pdm"     pdm
+    _ct_check "uv"      uv
+    _ct_check "pyenv"   pyenv
+    _ct_check "conda"   conda
+    _ct_check "poetry"  poetry
+    _ct_check "pipx"    pipx
+
+    echo -e "\n${yellow}Node / JS${reset}"
+    _ct_check "node"    node
+    _ct_check "npm"     npm
+    _ct_check "pnpm"    pnpm
+    _ct_check "yarn"    yarn
+    _ct_check "bun"     bun
+    _ct_check "deno"    deno
+
+    echo -e "\n${yellow}Rust${reset}"
+    _ct_check "cargo"   cargo
+    _ct_check "rustup"  rustup
+
+    echo -e "\n${yellow}Go${reset}"
+    _ct_check "go"      go
+
+    echo -e "\n${yellow}Package managers${reset}"
+    _ct_check "brew"    brew
+    _ct_check "apt"     apt
+    _ct_check "nix"     nix
+
+    echo -e "\n${yellow}Shell tools${reset}"
+    _ct_check "fzf"     fzf
+    _ct_check "zoxide"  zoxide
+    _ct_check "tmux"    tmux
+    _ct_check "nvim"    nvim
+    _ct_check "git"     git
+    _ct_check "docker"  docker
+    _ct_check "gh"      gh
+
+    echo -e "\n${bold}To add missing tools to your PATH:${reset}"
+    echo -e "  Edit ${yellow}~/.zshrc.local${reset} and uncomment the relevant lines."
+    echo -e "  Then run: ${yellow}source ~/.zshrc.local${reset}\n"
+
+    unfunction _ct_check
+}
+
 # Open Google search or localhost in browser
 google() {
     if [[ "$1" = "local" && -n "$2" ]]; then

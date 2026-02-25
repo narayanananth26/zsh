@@ -118,14 +118,29 @@ brew install fzf zoxide neovim
 sudo apt install fzf zoxide neovim
 ```
 
-### 6. Configure for login shells (macOS/most terminals)
+### 6. Set up local overrides
+
+```bash
+# 1. Create your local config file
+cp ~/.config/zsh/zshrc.local.example ~/.zshrc.local
+
+# 2. Restart your shell so the new function is available
+exec zsh
+
+# 3. See which tools you already have installed
+check-tools
+```
+
+`check-tools` will print every installed tool and its path. Open `~/.zshrc.local` and uncomment the lines for tools that are missing from the output. This file is **not tracked in git** and is the right place for machine-specific paths, private API keys, and personal aliases.
+
+### 7. Configure for login shells (macOS/most terminals)
 
 ```bash
 # Add this to ~/.zprofile to load .zshrc on startup
 echo '[[ -f ~/.zshrc ]] && source ~/.zshrc' >> ~/.zprofile
 ```
 
-### 7. Restart your shell
+### 8. Restart your shell
 
 ```bash
 exec zsh
@@ -346,13 +361,38 @@ cp ~/.config/zsh/p10k.zsh ~/.p10k.zsh
 exec zsh
 ```
 
-### Command not found
+### A tool I had installed is no longer found
 
-Check if the tool is installed:
+Run `check-tools` — it scans for all common dev tools and prints their paths:
 
 ```bash
-which zoxide fzf nvim
+check-tools
 ```
+
+Any tool that's missing from the output isn't in your PATH. Open `~/.zshrc.local`, uncomment (or add) the relevant `export PATH` line, then reload:
+
+```bash
+source ~/.zshrc.local
+```
+
+If you're not sure where a tool was installed, search for it:
+
+```bash
+find ~/.local/bin ~/.cargo/bin ~/.bun/bin /usr/local/bin /opt/homebrew/bin -name "pdm" 2>/dev/null
+```
+
+Common install locations:
+
+| Tool | Typical binary location |
+|------|------------------------|
+| pdm | `~/.local/bin/` or `~/.local/share/pdm/bin/` |
+| pyenv | `~/.pyenv/bin/` |
+| cargo / rust tools | `~/.cargo/bin/` |
+| bun | `~/.bun/bin/` |
+| pnpm | `~/Library/pnpm/` (macOS) or `~/.local/share/pnpm/` |
+| go binaries | `~/go/bin/` |
+| Homebrew (Apple Silicon) | `/opt/homebrew/bin/` |
+| Homebrew (Intel Mac) | `/usr/local/bin/` |
 
 ### "defining function based on alias" error in tmux
 

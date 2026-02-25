@@ -1,15 +1,40 @@
 # Local machine-specific configuration
 # Copy this file to ~/.zshrc.local and customize as needed
-# This file is not tracked in git and is for personal/private settings
+# This file is NOT tracked in git
 
-# Example: Add machine-specific PATH entries
-# export PATH="/custom/path:$PATH"
+# ── Python tools ──────────────────────────────────────────────────────────────
+# pdm (if installed via standalone installer)
+# export PATH="$HOME/.local/bin:$PATH"
 
-# Example: Add private aliases
+# pyenv
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
+
+# Specific Python framework version (macOS)
+# export PATH="/Library/Frameworks/Python.framework/Versions/3.12/bin:$PATH"
+
+# ── Node / JS tools ───────────────────────────────────────────────────────────
+# bun
+# export BUN_INSTALL="$HOME/.bun"
+# export PATH="$BUN_INSTALL/bin:$PATH"
+# [ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
+
+# pnpm
+# export PNPM_HOME="$HOME/Library/pnpm"
+# export PATH="$PNPM_HOME:$PATH"
+
+# ── Rust ──────────────────────────────────────────────────────────────────────
+# export PATH="$HOME/.cargo/bin:$PATH"
+
+# ── Homebrew (non-default prefix, e.g. Apple Silicon) ─────────────────────────
+# eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# ── Custom PATH entries ───────────────────────────────────────────────────────
+# export PATH="/custom/tool/bin:$PATH"
+
+# ── Private aliases ───────────────────────────────────────────────────────────
 # alias work="cd ~/work/project"
 
-# Example: Add API keys or tokens (DO NOT commit these)
+# ── API keys / secrets  ───────────────────────────────────
 # export OPENAI_API_KEY="your-key-here"
-
-# Example: Override default settings
-# HISTSIZE=10000

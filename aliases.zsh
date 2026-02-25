@@ -8,16 +8,14 @@ alias vim="nvim"
 # Tmux
 alias ta="tmux attach"
 alias td="tmux detach"
+alias tns="tmux new-session"
+alias tks="tmux kill-session"
 
 # Fuzzy find
 alias ff="fzf"
 
 # Alias helpers (search/browse aliases)
 alias aliases="alias | less"  # Browse all aliases with pagination
-
-# ====================================
-# Git Aliases (Custom - replacing OMZ)
-# ====================================
 
 # Basic shortcuts
 alias g="git"
