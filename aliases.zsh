@@ -1,9 +1,15 @@
 # Aliases
 
+# Source .zshrc
+alias sc="source ~/.zshrc"
+
 # General
 alias xx="clear"
 alias vi="nvim"
 alias vim="nvim"
+
+# IDE shortcuts
+alias zz="zed ."
 
 # Tmux
 alias ta="tmux attach"
@@ -50,7 +56,7 @@ alias gcom="git checkout main || git checkout master"  # Changed from gcm to avo
 alias gcd="git checkout develop"
 
 # Cherry pick
-alias gcp="git cherry-pick" 
+alias gcp="git cherry-pick"
 
 # Switch
 alias gsw="git switch"
@@ -80,6 +86,9 @@ alias gp="git push"
 alias gpf="git push --force-with-lease"
 alias gpff="git push --force"
 alias gpoat="git push origin --all && git push origin --tags"
+
+# Claude
+alias cc="claude"
 
 # Push with upstream
 gpsup() {
@@ -153,4 +162,3 @@ groh() {
         return 1
     fi
 }
-
