@@ -1,5 +1,9 @@
 # Custom functions
 
+cd() {
+  __zoxide_z "$@"
+}
+
 # FZF Alias Finder - Ctrl+A to search
 fzf-alias() {
     local selected
@@ -8,7 +12,7 @@ fzf-alias() {
         --preview 'echo {}' \
         --preview-window down:3:wrap \
         --header 'Search aliases (Enter to insert, Esc to cancel)')
-    
+
     if [[ -n "$selected" ]]; then
         # Extract just the alias name (before the '=')
         local alias_name="${selected%%=*}"
@@ -27,16 +31,16 @@ bindkey '^a' fzf-alias
 alias_reminder() {
     # Only check if not in completion mode
     [[ -n $ZSH_EVAL_CONTEXT && $ZSH_EVAL_CONTEXT =~ :file$ ]] && return
-    
+
     local cmd="$1"
     # Skip if empty or starts with alias itself
     [[ -z "$cmd" || "$cmd" == alias* ]] && return
-    
+
     # Only grep if cmd doesn't contain problematic characters
     if [[ "$cmd" =~ ^[a-zA-Z0-9_-]+$ ]]; then
         local alias_matches=$(alias | grep -E "='.*${cmd}.*'" 2>/dev/null | head -5)
     fi
-    
+
     if [[ -n "$alias_matches" ]]; then
         echo -e "\033[33m💡 Alias available:\033[0m"
         echo "$alias_matches" | sed 's/^/   /'
@@ -57,7 +61,7 @@ falias() {
         echo "Example: falias git"
         return 1
     fi
-    
+
     echo -e "\033[36m🔍 Aliases matching '$1':\033[0m"
     alias | grep -i "$1" | sort
 }
@@ -261,4 +265,11 @@ ddg() {
 so() {
     local query="${*// /+}"
     open "https://stackoverflow.com/search?q=${query}"
+}
+
+# tmux kill-server
+tk() {
+  read -q "REPLY?kill tmux server? (y/n) "
+  echo
+  [[ $REPLY =~ ^[Yy]$ ]] && tmux kill-server || echo "cancelled."
 }
