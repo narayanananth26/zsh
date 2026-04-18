@@ -88,7 +88,7 @@ alias gpff="git push --force"
 alias gpoat="git push origin --all && git push origin --tags"
 
 # Claude
-alias cc="claude"
+alias cc="clear && claude"
 
 # Push with upstream
 gpsup() {
