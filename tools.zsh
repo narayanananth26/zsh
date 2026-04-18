@@ -10,6 +10,15 @@ if command -v zoxide &> /dev/null; then
     source ~/.cache/zoxide-init.zsh
 fi
 
+# GitHub CLI completion (cached)
+if command -v gh &>/dev/null; then
+    if [[ ! -f ~/.cache/gh-completion.zsh ]] || [[ $(command -v gh) -nt ~/.cache/gh-completion.zsh ]]; then
+        mkdir -p ~/.cache
+        gh completion -s zsh > ~/.cache/gh-completion.zsh
+    fi
+    source ~/.cache/gh-completion.zsh
+fi
+
 # FZF - fuzzy finder
 if command -v fzf &>/dev/null; then
     eval "$(fzf --zsh)"
