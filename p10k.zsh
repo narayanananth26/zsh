@@ -31,6 +31,7 @@
     # =========================[ Line #2 ]=========================
     newline                   # \n
     virtualenv                # python virtual environment
+    vi_mode                   # vi mode indicator
     prompt_char               # prompt symbol
   )
 
@@ -68,6 +69,14 @@
   typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIVIS_CONTENT_EXPANSION='❮'
   # Prompt symbol in overwrite vi mode is the same as in command mode.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_OVERWRITE_STATE=false
+
+  # Vi mode indicator: shown only in NORMAL/VISUAL/OVERWRITE; hidden in INSERT.
+  typeset -g POWERLEVEL9K_VI_INSERT_MODE_STRING='-- INSERT --'
+  typeset -g POWERLEVEL9K_VI_COMMAND_MODE_STRING='-- NORMAL --'
+  typeset -g POWERLEVEL9K_VI_VISUAL_MODE_STRING='-- VISUAL --'
+  typeset -g POWERLEVEL9K_VI_OVERWRITE_MODE_STRING='-- OVERTYPE --'
+  typeset -g POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND=$green
+  typeset -g POWERLEVEL9K_VI_MODE_FOREGROUND=$yellow
 
   # Grey Python Virtual Environment.
   typeset -g POWERLEVEL9K_VIRTUALENV_FOREGROUND=$grey
