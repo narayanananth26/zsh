@@ -22,3 +22,17 @@ for km in viopp visual; do
     done
 done
 
+# Cursor shape per vi mode: beam in INSERT, block in NORMAL.
+_set_cursor_shape() {
+    case $KEYMAP in
+        vicmd)         print -n '\e[2 q' ;;  # block
+        main|viins|'') print -n '\e[6 q' ;;  # beam
+    esac
+}
+zle -N zle-keymap-select _set_cursor_shape
+zle -N zle-line-init     _set_cursor_shape
+
+# Reset to beam on new prompt (after command runs).
+_beam_cursor_precmd() { print -n '\e[6 q'; }
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd _beam_cursor_precmd
