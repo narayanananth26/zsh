@@ -28,6 +28,7 @@ _set_cursor_shape() {
         vicmd)         print -n '\e[2 q' ;;  # block
         main|viins|'') print -n '\e[6 q' ;;  # beam
     esac
+    zle reset-prompt
 }
 zle -N zle-keymap-select _set_cursor_shape
 zle -N zle-line-init     _set_cursor_shape

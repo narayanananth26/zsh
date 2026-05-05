@@ -73,10 +73,10 @@
   # Vi mode indicator: shown only in NORMAL/VISUAL/OVERWRITE; hidden in INSERT.
   typeset -g POWERLEVEL9K_VI_INSERT_MODE_STRING='-- INSERT --'
   typeset -g POWERLEVEL9K_VI_COMMAND_MODE_STRING='-- NORMAL --'
-  typeset -g POWERLEVEL9K_VI_VISUAL_MODE_STRING='-- VISUAL --'
+  typeset -g POWERLEVEL9K_VI_VISUAL_MODE_STRING="%F{$blue}-- VISUAL --%F{$red}"
   typeset -g POWERLEVEL9K_VI_OVERWRITE_MODE_STRING='-- OVERTYPE --'
-  typeset -g POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND=$green
-  typeset -g POWERLEVEL9K_VI_MODE_FOREGROUND=$yellow
+  typeset -g POWERLEVEL9K_VI_MODE_INSERT_FOREGROUND='#ffffd7'
+  typeset -g POWERLEVEL9K_VI_MODE_FOREGROUND=$red
 
   # Grey Python Virtual Environment.
   typeset -g POWERLEVEL9K_VIRTUALENV_FOREGROUND=$grey
@@ -101,7 +101,7 @@
   # Duration format: 1d 2h 3m 4s.
   typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FORMAT='d h m s'
   # Yellow previous command duration.
-  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND=$yellow
+  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND='#ffffd7'
 
   # Grey Git prompt. This makes stale prompts indistinguishable from up-to-date ones.
   typeset -g POWERLEVEL9K_VCS_FOREGROUND=$grey
@@ -136,7 +136,7 @@
   typeset -g POWERLEVEL9K_VCS_CONTENT_EXPANSION='${${${P9K_CONTENT/⇣* :⇡/⇣⇡}// }//:/ }'
 
   # Grey current time.
-  typeset -g POWERLEVEL9K_TIME_FOREGROUND=$grey
+  typeset -g POWERLEVEL9K_TIME_FOREGROUND='#ffffd7'
   # Format for the current time: 09:51:02. See `man 3 strftime`.
   typeset -g POWERLEVEL9K_TIME_FORMAT='%D{%I:%M:%S %p}'
   # If set to true, time will update when you hit enter. This way prompts for the past
