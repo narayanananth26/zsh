@@ -21,7 +21,6 @@ source "$ZSH_CONFIG_DIR/completion.zsh"
 source "$ZSH_CONFIG_DIR/functions.zsh"
 source "$ZSH_CONFIG_DIR/aliases.zsh"
 source "$ZSH_CONFIG_DIR/theme.zsh"
-source "$ZSH_CONFIG_DIR/tools.zsh"
 
 
 # Enable aliases
@@ -30,3 +29,6 @@ setopt aliases
 # Source local machine-specific overrides (not tracked in git)
 # Copy zshrc.local.example to ~/.zshrc.local and customize
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+# Tools (zoxide, fzf, gh) must initialize last per zoxide's recommendation.
+source "$ZSH_CONFIG_DIR/tools.zsh"

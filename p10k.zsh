@@ -21,30 +21,18 @@
   local cyan='#9AEDFE'
   local white='#F1F1F0'
 
-  # Left prompt segments.
+  # Left prompt segments (single line to avoid resize redraw artifacts).
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
-    # =========================[ Line #1 ]=========================
     context                   # user@host
     dir                       # current directory
     vcs                       # git status
     command_execution_time    # previous command duration
-    # =========================[ Line #2 ]=========================
-    newline                   # \n
     virtualenv                # python virtual environment
-    vi_mode                   # vi mode indicator
     prompt_char               # prompt symbol
   )
 
-  # Right prompt segments.
-  typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
-    # =========================[ Line #1 ]=========================
-    # command_execution_time  # previous command duration
-    # virtualenv              # python virtual environment
-    # context                 # user@host
-    time                      # current time
-    # =========================[ Line #2 ]=========================
-    newline                   # \n
-  )
+  # Right prompt segments
+  typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 
   # Basic style options that define the overall prompt look.
   typeset -g POWERLEVEL9K_BACKGROUND=                            # transparent background

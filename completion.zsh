@@ -1,5 +1,8 @@
 # Completion configuration
 
+# Local completion functions (e.g. herdr) — must precede compinit
+fpath=("${ZSH_CONFIG_DIR:-$HOME/.config/zsh}/completions" $fpath)
+
 # Completion configuration with aggressive caching
 autoload -Uz compinit
 
@@ -12,6 +15,9 @@ if [[ ! -e ~/.zcompdump ]]; then
 else
   compinit -C
 fi
+
+autoload -Uz bashcompinit && bashcompinit
+complete -C '/usr/local/bin/aws_completer' aws
 
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
