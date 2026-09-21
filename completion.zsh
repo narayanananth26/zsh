@@ -2,18 +2,16 @@
 
 # Local completion functions (e.g. herdr) — must precede compinit
 fpath=("${ZSH_CONFIG_DIR:-$HOME/.config/zsh}/completions" $fpath)
+fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
 
 # Completion configuration with aggressive caching
 autoload -Uz compinit
 
 # Only regenerate compdump once per day
-for dump in ~/.zcompdump(N.mh+24); do
-  compinit
-done
-if [[ ! -e ~/.zcompdump ]]; then
-  compinit
-else
+if [[ -n ~/.zcompdump(#qN.mh-24) ]]; then
   compinit -C
+else
+  compinit
 fi
 
 autoload -Uz bashcompinit && bashcompinit
