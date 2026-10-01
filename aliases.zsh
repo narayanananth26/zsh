@@ -11,6 +11,15 @@ alias vim="nvim"
 # IDE shortcuts
 alias zz="zed ."
 
+# ls
+alias ls="ls -G"
+alias l="ls -lh"
+alias ll="ls -lh"
+alias la="ls -lAh"
+alias lt="ls -lhtr"   # Sort by modified time, newest last
+alias lS="ls -lhSr"   # Sort by size, largest last
+alias ld="ls -ld */"  # Directories only
+
 # Tmux
 alias ta="tmux attach"
 alias td="tmux detach"
