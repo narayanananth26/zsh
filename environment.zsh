@@ -2,6 +2,12 @@
 # Pure exports (PATH, GOPATH, NVM_DIR, PNPM_HOME) live in ~/.zshenv so scripts
 # and GUI-launched processes see them too. Only lazy-loaders belong here.
 
+if command -v nvim &> /dev/null; then
+    export EDITOR=nvim VISUAL=nvim
+else
+    export EDITOR=vim VISUAL=vim
+fi
+
 # Lazy load nvm
 nvm() {
     unset -f nvm
